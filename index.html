@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="EDJE-telligence Team">
+  <meta name="keyword" content="Awesomeness">
+  <title>EDJE-telligence</title>
+
+  <!-- Favicons -->
+  <link href="img/ui-eddie.jpeg" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
+  <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+  <script src="lib/chart-master/Chart.js"></script>
+
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+
+  <style type="text/css">
+    /* On mouse hover, lighten state color */
+    path:hover {
+      fill-opacity: .7;
+    }
+
+    /* Style for Custom Tooltip */
+    div.tooltip {
+      position: absolute;
+      text-align: center;
+      width: 100px;
+      height: 28px;
+      padding: 2px;
+      font: 12px sans-serif;
+      background: white;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* Legend Font Style */
+    body {
+      font: 11px sans-serif;
+    }
+
+    /* Legend Position Style */
+    .legend {
+      position: absolute;
+      left: 800px;
+      top: 350px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HTML -->
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header edje-primary">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="index.html" class="logo"><b>EDJE<span>telligence</span></b></a>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+        </ul>
+        <!--  notification end -->
+      </div>
+      <div class="top-menu">
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered"><a href="profile.html"><img src="img/ui-eddie.jpeg" class="img-circle" width="80"></a></p>
+          <li class="mt" id="navlinks">
+            <a onclick="goto('clientsovertime',this)" >
+              <i class="fa fa-dashboard"></i>
+              <span>Client Assignment Over Time</span>
+            </a>
+            <a onclick="goto('sharts',this)">
+              <i class="fa fa-dashboard"></i>
+              <span>Sharts</span>
+            </a>
+            <a onclick="goto('map',this)">
+              <i class="fa fa-dashboard"></i>
+              <span>EDJE World Domination</span>
+            </a>
+            <a onclick="goto('clienthistory',this)">
+              <i class="fa fa-dashboard"></i>
+              <span>Client History</span>
+            </a>
+            
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-9" id="mainArea" style="height: 90vh;">
+            <!--CUSTOM CHART START -->
+            <div id="welcome">Hello, Select a link on the left. </div>
+            <div id="clientsovertime" style="display: none; height: 90vh;"></div>
+            <div id="clienthistory" style="display: none; height: 90vh;"></div>
+            <div id="map" style="display: none; height: 90vh;"></div>
+            <div id="sharts" style="display: none; height: 90vh;">
+              <head>
+                  <img style="width: 95%; height: 95%;" class="shart" src="./sharts/Beach Days vs Tenure.png"> </img>
+                  <br />
+                  <br />
+                  <img style="width: 95%; height: 95%;" class="shart" src="./sharts/Beach Days vs Letters in Name.png"> </img>
+                  <br />
+                  <br />
+                  <img style="width: 95%; height: 95%;" class="shart" src="./sharts/Client Survey - Time to Respond.png"> </img>
+              </head>
+            </div>
+            <div class="border-head">
+            </div>
+            <!--custom chart end-->
+            <!-- /row -->
+          </div>
+        </div>
+        <div class="svg"></div>
+        <div class="tooltip"></div>
+        <!-- /col-lg-9 END SECTION MIDDLE -->
+        <!-- **********************************************************************************************************************************************************
+              RIGHT SIDEBAR CONTENT
+              *********************************************************************************************************************************************************** -->
+
+        <!-- /col-lg-3 -->
+        <!-- /row -->
+      </section>
+    </section>
+    <!--main content end-->
+    <!--footer start-->
+    <!--footer end-->
+  </section>
+
+  <script>
+    function goto(div, link) {
+      $('#mainArea').children().hide();
+      $('#' + div).show();
+    }
+  </script>
+
+<script src="clientovertime.js"></script>
+<script src="map.js"></script>
+<script src="clienthistory.js"></script>
+
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="lib/jquery/jquery.min.js"></script>
+
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="lib/jquery.sparkline.js"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
+  <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
+  <script type="text/javascript" src="lib/gritter-conf.js"></script>
+  <!--script for this page-->
+  <script src="lib/sparkline-chart.js"></script>
+  <script src="lib/zabuto_calendar.js"></script>
+  <script type="application/javascript">
+    $(document).ready(function () {
+      $("#date-popover").popover({
+        html: true,
+        trigger: "manual"
+      });
+      $("#date-popover").hide();
+      $("#date-popover").click(function (e) {
+        $(this).hide();
+      });
+    });
+
+    function myNavFunction(id) {
+      $("#date-popover").hide();
+      var nav = $("#" + id).data("navigation");
+      var to = $("#" + id).data("to");
+      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+    }
+  </script>
+</body>
+
+</html>
